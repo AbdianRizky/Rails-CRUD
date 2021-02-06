@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RailsCrud</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>Rails CRUD</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <%= stylesheet_link_tag 'tailwind', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <div>
+    <%= render 'components/Navbar' %>
+    <%= yield :header %>
+    <main class="py-10 px-20">
+      <%= yield :content %>
+    </main>
+  </div>
+
+  <script>
+    const btnUser = document.getElementById("user-btn");
+    const menuUser = document.getElementById("user-menu");
+
+    btnUser.addEventListener("click", e => {
+      e.preventDefault();
+      // console.log(menuUser.classList[0] === "hidden");
+      if (menuUser.classList[12] === "hidden") {
+        menuUser.classList.add("block")
+        menuUser.classList.remove("hidden")
+      } else if (menuUser.classList[12] === "block") {
+        menuUser.classList.remove("block")
+        menuUser.classList.add("hidden")
+      }
+    });
+  </script>
+</body>
+
 </html>
