@@ -14,7 +14,10 @@
 <body>
   <div>
     <%= render 'components/Navbar' %>
+    <% if user_signed_in? %>
     <%= yield :header %>
+    <% end %>
+    <%= yield %>
     <main class="py-10 px-20">
       <% if notice %>
       <%= render 'components/Notification' %>

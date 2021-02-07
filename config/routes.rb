@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :friends
   root to: 'friends#index', as: 'root'
   get 'dashboard', to: 'dashboard#index', as: 'dashboard'  
