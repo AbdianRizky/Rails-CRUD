@@ -8,7 +8,7 @@
   <%= csp_meta_tag %>
 
   <%= stylesheet_link_tag 'tailwind', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'rails', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
@@ -16,26 +16,13 @@
     <%= render 'components/Navbar' %>
     <%= yield :header %>
     <main class="py-10 px-20">
+      <% if notice %>
+      <%= render 'components/Notification' %>
+      <% end %>
       <%= yield :content %>
     </main>
   </div>
-
-  <script>
-    const btnUser = document.getElementById("user-btn");
-    const menuUser = document.getElementById("user-menu");
-
-    btnUser.addEventListener("click", e => {
-      e.preventDefault();
-      // console.log(menuUser.classList[0] === "hidden");
-      if (menuUser.classList[12] === "hidden") {
-        menuUser.classList.add("block")
-        menuUser.classList.remove("hidden")
-      } else if (menuUser.classList[12] === "block") {
-        menuUser.classList.remove("block")
-        menuUser.classList.add("hidden")
-      }
-    });
-  </script>
+  <%= javascript_include_tag "application" %>
 </body>
 
 </html>
