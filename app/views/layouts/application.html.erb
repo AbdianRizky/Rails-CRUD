@@ -12,20 +12,19 @@
 </head>
 
 <body>
-  <div>
-    <%= render 'components/Navbar' %>
-    <% if user_signed_in? %>
-    <%= yield :header %>
+  <% if user_signed_in? %>
+  <%= render 'components/Navbar' %>
+  <%= yield :header %>
+  <main class="py-10 px-20">
+    <% if notice %>
+    <%= render 'components/Notification' %>
     <% end %>
-    <%= yield %>
-    <main class="py-10 px-20">
-      <% if notice %>
-      <%= render 'components/Notification' %>
-      <% end %>
-      <%= yield :content %>
-    </main>
-  </div>
+    <%= yield :content %>
+  </main>
   <%= javascript_include_tag "application" %>
+  <% else %>
+  <%= yield %>
+  <% end %>
 </body>
 
 </html>
