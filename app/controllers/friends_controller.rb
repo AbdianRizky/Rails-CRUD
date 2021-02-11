@@ -7,6 +7,10 @@ class FriendsController < ApplicationController
     @friends = Friend.all
   end
 
+  # GET /dasboard/ or /dasboard.json
+  def dashboard
+  end
+
   # GET /friends/1 or /friends/1.json
   def show
   end

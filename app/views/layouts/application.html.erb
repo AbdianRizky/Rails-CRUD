@@ -10,21 +10,22 @@
   <%= stylesheet_link_tag 'tailwind', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'rails', 'data-turbolinks-track': 'reload' %>
+  <%= yield :head || "" %>
 </head>
 
 <body>
   <% if user_signed_in? %>
   <%= render 'components/Navbar' %>
-  <%= yield :header %>
-  <main class="py-10 px-20">
+  <%= yield :header || "" %>
+  <main class="py-10 px-20 bg-gray-100">
     <% if notice %>
     <%= render 'components/Notification' %>
     <% end %>
-    <%= yield :content %>
+    <%= yield :content || "" %>
   </main>
   <%= javascript_include_tag "application" %>
   <% else %>
-  <%= yield %>
+  <%= yield || "" %>
   <% end %>
 </body>
 
