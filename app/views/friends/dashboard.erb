@@ -1,5 +1,4 @@
-<% content_for :header do %>
-  <%= stylesheet_link_tag 'fontawesome/css/fontawesome.min.css'%>
+<% content_for :head do %>
   <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" %>
   <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" %>
   <%= javascript_include_tag "https://unpkg.com/@popperjs/core@2/dist/umd/popper.js" %>
@@ -24,32 +23,30 @@
 <% end %>
 
 <% content_for :content do %>
-<div class="relative bg-gray-700 rounded-lg md:pt-32 pb-32 pt-12">
+<% if @friends.exists? %>
+<div class="relative rounded-lg pb-32">
   <div class="px-4 md:px-10 mx-auto w-full">
     <div>
       <!-- Card stats -->
       <div class="flex flex-wrap">
+        <!-- Total Friends -->
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <div
-            class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-          >
+          <div class="relative flex flex-col min-w-0 break-words bg-gray-100 rounded mb-6 xl:mb-0 shadow-lg">
             <div class="flex-auto p-4">
               <div class="flex flex-wrap">
                 <div
                   class="relative w-full pr-4 max-w-full flex-grow flex-1"
                 >
                   <h5 class="text-gray-500 uppercase font-bold text-xs">
-                    Traffic
+                    Total Friends
                   </h5>
-                  <span class="font-semibold text-xl text-gray-800">
-                    350,897
+                  <span id  class="font-semibold text-xl text-gray-800">
+                    <%= @friendsLength %>
                   </span>
                 </div>
                 <div class="relative w-auto pl-4 flex-initial">
-                  <div
-                    class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500"
-                  >
-                    <i class="far fa-chart-bar"></i>
+                  <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
+                    <i class="fas fa-users"></i>
                   </div>
                 </div>
               </div>
@@ -64,17 +61,17 @@
             </div>
           </div>
         </div>
+        <!-- end Total Friends -->
+        <!-- Friends In a Week -->
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <div
-            class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-          >
+          <div class="relative flex flex-col min-w-0 break-words bg-gray-100 rounded mb-6 xl:mb-0 shadow-lg">
             <div class="flex-auto p-4">
               <div class="flex flex-wrap">
                 <div
                   class="relative w-full pr-4 max-w-full flex-grow flex-1"
                 >
                   <h5 class="text-gray-500 uppercase font-bold text-xs">
-                    New users
+                    New Friends In a week
                   </h5>
                   <span class="font-semibold text-xl text-gray-800">
                     2,356
@@ -99,17 +96,15 @@
             </div>
           </div>
         </div>
+        <!-- end Friends In a Week -->
+        <!-- Friends In a Week -->
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <div
-            class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-          >
+          <div class="relative flex flex-col min-w-0 break-words bg-gray-100 rounded mb-6 xl:mb-0 shadow-lg">
             <div class="flex-auto p-4">
               <div class="flex flex-wrap">
-                <div
-                  class="relative w-full pr-4 max-w-full flex-grow flex-1"
-                >
+                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                   <h5 class="text-gray-500 uppercase font-bold text-xs">
-                    Sales
+                    New Friends In a Month
                   </h5>
                   <span class="font-semibold text-xl text-gray-800">
                     924
@@ -119,7 +114,7 @@
                   <div
                     class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-pink-500"
                   >
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-chart-bar"></i>
                   </div>
                 </div>
               </div>
@@ -128,23 +123,23 @@
                   <i class="fas fa-arrow-down"></i> 1.10%
                 </span>
                 <span class="whitespace-no-wrap">
-                  Since yesterday
+                  Since last month
                 </span>
               </p>
             </div>
           </div>
         </div>
+        <!-- end Friends In a Week -->
+        <!-- Friends In a Year -->
         <div class="w-full lg:w-6/12 xl:w-3/12 px-4">
-          <div
-            class="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg"
-          >
+          <div class="relative flex flex-col min-w-0 break-words bg-gray-100 rounded mb-6 xl:mb-0 shadow-lg">
             <div class="flex-auto p-4">
               <div class="flex flex-wrap">
                 <div
                   class="relative w-full pr-4 max-w-full flex-grow flex-1"
                 >
                   <h5 class="text-gray-500 uppercase font-bold text-xs">
-                    Performance
+                    New Friends In a Year
                   </h5>
                   <span class="font-semibold text-xl text-gray-800">
                     49,65%
@@ -163,13 +158,14 @@
                   <i class="fas fa-arrow-up"></i> 12%
                 </span>
                 <span class="whitespace-no-wrap">
-                  Since last month
+                  Since last year
                 </span>
               </p>
             </div>
           </div>
         </div>
       </div>
+      <!-- end Card stats -->
     </div>
   </div>
 </div>
@@ -205,28 +201,18 @@
     <!-- end Overview -->
   </div>
   <div class="flex flex-wrap mt-4">
-
     <!-- Page Visit -->
     <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-      <div
-        class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
-      >
-        <div class="rounded-t mb-0 px-4 py-3 border-0">
+      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+        <div class="rounded-t mb-0 px-4 py-3 border-0 bg-gray-300">
           <div class="flex flex-wrap items-center">
-            <div
-              class="relative w-full px-4 max-w-full flex-grow flex-1"
-            >
+            <div class="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 class="font-semibold text-base text-gray-800">
                 Page visits
               </h3>
             </div>
-            <div
-              class="relative w-full px-4 max-w-full flex-grow flex-1 text-right"
-            >
-              <button
-                class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-              >
+            <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+              <button type="button" class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                 See all
               </button>
             </div>
@@ -239,140 +225,92 @@
           >
             <thead>
               <tr>
-                <th
-                  class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
-                >
+                <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                   Page name
                 </th>
-                <th
-                  class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
-                >
+                <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                   Visitors
                 </th>
-                <th
-                  class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
-                >
+                <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                   Unique users
                 </th>
-                <th
-                  class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
-                >
+                <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                   Bounce rate
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left"
-                >
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                   /argon/
                 </th>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   4,569
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   340
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   <i class="fas fa-arrow-up text-green-500 mr-4"></i>
                   46,53%
                 </td>
               </tr>
               <tr>
-                <th
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left"
-                >
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                   /argon/index.html
                 </th>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   3,985
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   319
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   <i class="fas fa-arrow-down text-orange-500 mr-4"></i>
                   46,53%
                 </td>
               </tr>
               <tr>
-                <th
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left"
-                >
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                   /argon/charts.html
                 </th>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   3,513
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   294
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   <i class="fas fa-arrow-down text-orange-500 mr-4"></i>
                   36,49%
                 </td>
               </tr>
               <tr>
-                <th
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left"
-                >
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                   /argon/tables.html
                 </th>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   2,050
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   147
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   <i class="fas fa-arrow-up text-green-500 mr-4"></i>
                   50,87%
                 </td>
               </tr>
               <tr>
-                <th
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left"
-                >
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                   /argon/profile.html
                 </th>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   1,795
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   190
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   <i class="fas fa-arrow-down text-red-500 mr-4"></i>
                   46,53%
                 </td>
@@ -383,28 +321,19 @@
       </div>
     </div>
     <!-- end Page Visit -->
-
     <!-- Social Traffic -->
     <div class="w-full xl:w-4/12 px-4">
       <div
-        class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
-      >
-        <div class="rounded-t mb-0 px-4 py-3 border-0">
+        class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+        <div class="rounded-t mb-0 px-4 py-3 border-0 bg-gray-300">
           <div class="flex flex-wrap items-center">
-            <div
-              class="relative w-full px-4 max-w-full flex-grow flex-1"
-            >
+            <div class="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3 class="font-semibold text-base text-gray-800">
                 Social traffic
               </h3>
             </div>
-            <div
-              class="relative w-full px-4 max-w-full flex-grow flex-1 text-right"
-            >
-              <button
-                class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                type="button"
-              >
+            <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+              <button type="button" class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                 See all
               </button>
             </div>
@@ -412,108 +341,68 @@
         </div>
         <div class="block w-full overflow-x-auto">
           <!-- Projects table -->
-          <table
-            class="items-center w-full bg-transparent border-collapse"
-          >
+          <table class="items-center w-full bg-transparent border-collapse">
             <thead class="thead-light">
               <tr>
-                <th
-                  class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
-                >
+                <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                   Referral
                 </th>
-                <th
-                  class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left"
-                >
+                <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left">
                   Visitors
                 </th>
-                <th
-                  class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left min-w-140-px"
-                ></th>
+                <th class="px-6 bg-gray-100 text-gray-600 align-middle border border-solid border-gray-200 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left min-w-140-px"></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left"
-                >
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                   Facebook
                 </th>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   1,480
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   <div class="flex items-center">
                     <span class="mr-2">60%</span>
                     <div class="relative w-full">
-                      <div
-                        class="overflow-hidden h-2 text-xs flex rounded bg-red-200"
-                      >
-                        <div
-                          style="width: 60%;"
-                          class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"
-                        ></div>
+                      <div class="overflow-hidden h-2 text-xs flex rounded bg-red-200">
+                        <div style="width: 60%;" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500"></div>
                       </div>
                     </div>
                   </div>
                 </td>
               </tr>
               <tr>
-                <th
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left"
-                >
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                   Facebook
                 </th>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   5,480
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   <div class="flex items-center">
                     <span class="mr-2">70%</span>
                     <div class="relative w-full">
-                      <div
-                        class="overflow-hidden h-2 text-xs flex rounded bg-green-200"
-                      >
-                        <div
-                          style="width: 70%;"
-                          class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
-                        ></div>
+                      <div class="overflow-hidden h-2 text-xs flex rounded bg-green-200">
+                        <div style="width: 70%;" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
                       </div>
                     </div>
                   </div>
                 </td>
               </tr>
               <tr>
-                <th
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left"
-                >
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                   Google
                 </th>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   4,807
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   <div class="flex items-center">
                     <span class="mr-2">80%</span>
                     <div class="relative w-full">
-                      <div
-                        class="overflow-hidden h-2 text-xs flex rounded bg-purple-200"
-                      >
-                        <div
-                          style="width: 80%;"
-                          class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"
+                      <div class="overflow-hidden h-2 text-xs flex rounded bg-purple-200">
+                        <div style="width: 80%;" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500"
                         ></div>
                       </div>
                     </div>
@@ -521,28 +410,18 @@
                 </td>
               </tr>
               <tr>
-                <th
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left"
-                >
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                   Instagram
                 </th>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   3,678
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   <div class="flex items-center">
                     <span class="mr-2">75%</span>
                     <div class="relative w-full">
-                      <div
-                        class="overflow-hidden h-2 text-xs flex rounded bg-blue-200"
-                      >
-                        <div
-                          style="width: 75%;"
-                          class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"
+                      <div class="overflow-hidden h-2 text-xs flex rounded bg-blue-200">
+                        <div style="width: 75%;" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-500"
                         ></div>
                       </div>
                     </div>
@@ -550,29 +429,18 @@
                 </td>
               </tr>
               <tr>
-                <th
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left"
-                >
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left">
                   twitter
                 </th>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   2,645
                 </td>
-                <td
-                  class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-                >
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                   <div class="flex items-center">
                     <span class="mr-2">30%</span>
                     <div class="relative w-full">
-                      <div
-                        class="overflow-hidden h-2 text-xs flex rounded bg-orange-200"
-                      >
-                        <div
-                          style="width: 30%;"
-                          class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"
-                        ></div>
+                      <div class="overflow-hidden h-2 text-xs flex rounded bg-orange-200">
+                        <div style="width: 30%;" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-green-500"></div>
                       </div>
                     </div>
                   </div>
@@ -586,4 +454,22 @@
     <!-- end Social Traffic -->
   </div>
 </div>
+<% else %>
+<div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+  <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+    <span class="block">There is no friend.🤷‍♂️</span>
+    <span class="block text-indigo-600">Create a new one.</span>
+  </h2>
+  <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+    <div class="inline-flex rounded-md shadow">
+      <a href="<%= new_friend_path %>">
+        <button type="button" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          <i class="bi bi-pencil-fill mr-2"></i>
+          Add Friend
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+<% end %>
 <% end %>

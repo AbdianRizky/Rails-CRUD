@@ -207,7 +207,7 @@ function openDropdown(event, dropdownID) {
             display: true,
             scaleLabel: {
               display: false,
-              labelString: "Value",
+              labelString: "Friends",
             },
             gridLines: {
               borderDash: [2],

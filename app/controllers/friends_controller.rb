@@ -9,6 +9,8 @@ class FriendsController < ApplicationController
 
   # GET /dasboard/ or /dasboard.json
   def dashboard
+    @friends = Friend.all
+    @friendsLength = @friends.length
   end
 
   # GET /friends/1 or /friends/1.json
