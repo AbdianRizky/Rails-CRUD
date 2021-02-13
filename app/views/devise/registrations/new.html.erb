@@ -6,7 +6,7 @@
         Sign Up
       </h2>
       <p class="mt-2 text-center text-sm text-gray-600">
-        Already have an account? <%= link_to "Back to sign up", user_session, class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+        Already have an account? <%= link_to "Back to sign in", user_session_path , class: "font-medium text-indigo-600 hover:text-indigo-500" %>
       </p>
       <%= render "devise/shared/error_messages", resource: resource %>
     </div>

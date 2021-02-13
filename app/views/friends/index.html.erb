@@ -15,7 +15,6 @@
       <a href="<%= new_friend_path %>">
         <button type="button" class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           <i class="fas fa-user-plus mr-2"></i>
-          <% render "components/icons/Pencil" %>
           Add Friend
         </button>
       </a>
@@ -50,14 +49,15 @@
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
             <% @friends.each do |friend| %>
+            <% if friend.user == current_user %>
             <tr>
               <td class="px-10 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                   <!--
-                    <div class="flex-shrink-0 h-10 w-10">
-                      <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
-                    </div>
-                    -->
+                        <div class="flex-shrink-0 h-10 w-10">
+                          <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60" alt="">
+                        </div>
+                        -->
                   <!-- Default: ml-4 -->
                   <div>
                     <div class="text-sm font-medium text-gray-900">
@@ -84,6 +84,7 @@
                 </a>
               </td>
             </tr>
+            <% end %>
             <% end %>
           </tbody>
         </table>
