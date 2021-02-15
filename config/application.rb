@@ -12,7 +12,7 @@ module RailsCrud
     config.load_defaults 6.1
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
     config.i18n.available_locales = [:id, :en, :rs]
-    config.i18n.default_locale = :rs
+    config.i18n.default_locale = :id
 
     # Configuration for the application, engines, and railties goes here.
     #
