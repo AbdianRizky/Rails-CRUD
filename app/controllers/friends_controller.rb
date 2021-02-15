@@ -9,8 +9,9 @@ class FriendsController < ApplicationController
 
   # GET /dasboard/ or /dasboard.json
   def dashboard
-    @friends = Friend.all.where("user_id = " + current_user.id.to_s )
+    @friends = Friend.where("user_id = " + current_user.id.to_s )
     @friendsLength = @friends.length
+    @friends
   end
 
   # GET /friends/1 or /friends/1.json

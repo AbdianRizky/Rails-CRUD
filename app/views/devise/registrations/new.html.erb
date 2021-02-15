@@ -1,19 +1,21 @@
 <div class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-lg w-full space-y-5">
-    <div>
-      <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
-      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-        Sign Up
-      </h2>
-      <p class="mt-2 text-center text-sm text-gray-600">
-        Already have an account? <%= link_to "Back to sign in", user_session_path , class: "font-medium text-indigo-600 hover:text-indigo-500" %>
-      </p>
-      <%= render "devise/shared/error_messages", resource: resource %>
-    </div>
+  <div class="max-w-md w-full space-y-5">
+    <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <div class="p-8 bg-white rounded-xl shadow-md">
-      <div id="form" class="mb-8">
-        <div class="rounded-md shadow-sm -space-y-px">
+    <div id="register-card" class="p-8 bg-white rounded-xl shadow-md">
+      <div id="header">
+        <h2 class="text-center text-3xl font-extrabold text-gray-900">
+          Sign Up
+        </h2>
+        <%- if controller_name != 'sessions' %>
+        <p class="mt-2 text-center text-sm text-gray-600">
+          Already have an account? <%= link_to "Back to sign in", new_session_path(resource_name), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+        </p>
+        <% end %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+      </div>
+      <div id="form">
+        <div class="py-3 rounded-md shadow-sm space-y-4">
           <div id="email">
             <%= f.label :email, class: "sr-only" %>
             <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email Address", class: "appearance-none rounded-none relative block w-full px-3 py-2 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
@@ -21,9 +23,11 @@
           <div id="password">
             <%= f.label :password, class: "sr-only" %>
             <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "appearance-none rounded-none relative block w-full px-3 py-2 my-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            <!--
             <% if @minimum_password_length %>
             <em class="text-sm text-red-500 font-semibold">(<%= @minimum_password_length %> characters minimum)</em>
             <% end %>
+            -->
           </div>
           <div id="password-confirmation">
             <%= f.label :password_confirmation, class: "sr-only" %>

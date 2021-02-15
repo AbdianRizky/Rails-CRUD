@@ -5,18 +5,25 @@ ruby '3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
+gem 'rails-i18n', '~> 6.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Authentication Scaffold
 gem 'devise', '~> 4.7', '>= 4.7.3'
-# Add CSRF Protection
+gem 'devise-i18n'
+# A generalized Rack framework for multiple-provider authentication.
+gem 'omniauth', '~> 2.0', '>= 2.0.2'
+# Add CSRF omniauth Protection
 gem 'omniauth-rails_csrf_protection'
-# OAuth 2.0 Facebook Google Twitter
+# OAuth 2.0 Facebook Google Twitter Github
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+gem 'omniauth-github', '~> 2.0'
+# An Action Dispatch session store backed by an Active Record class.
+# gem 'activerecord-session_store', '~> 1.1', '>= 1.1.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
