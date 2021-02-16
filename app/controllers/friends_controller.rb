@@ -12,19 +12,18 @@ class FriendsController < ApplicationController
     @friends = Friend.where("user_id = " + current_user.id.to_s )
     @totalFriends = @friends.length
     @totalMingguKemarin = @friends.where(created_at: 1.week.ago.all_week).length
+    # @totalMingguKemarin = @friends.where(created_at: (1.hours.ago)..Time.now).length
     @totalMingguIni = @friends.where(created_at: Date.today.all_week).length
     @totalBulanKemarin = @friends.where(created_at: 1.month.ago.all_month).length
     @totalBulanIni = @friends.where(created_at: Date.today.all_month).length
     @totalTahunKemarin = @friends.where(created_at: 1.year.ago.all_year).length
     @totalTahunIni = @friends.where(created_at: Date.today.all_year).length
     def persentaseKenaikan(awal, akhir)
-      return awal <= 0 ? "0" : (akhir - awal) / awal * 100/100
+      return awal <= 0 ? 100.to_f : (((akhir - awal).to_f / awal) * 100).to_f
     end
     @persentaseMingguIni = persentaseKenaikan(@totalMingguKemarin, @totalMingguIni)
     @persentaseBulanIni = persentaseKenaikan(@totalBulanKemarin, @totalBulanIni)
     @persentaseTahunIni = persentaseKenaikan(@totalTahunKemarin, @totalTahunIni)
-
-    
   end
 
   # GET /friends/1 or /friends/1.json
