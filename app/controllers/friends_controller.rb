@@ -10,8 +10,21 @@ class FriendsController < ApplicationController
   # GET /dasboard/ or /dasboard.json
   def dashboard
     @friends = Friend.where("user_id = " + current_user.id.to_s )
-    @friendsLength = @friends.length
-    @friends
+    @totalFriends = @friends.length
+    @totalMingguKemarin = @friends.where(created_at: 1.week.ago.all_week).length
+    @totalMingguIni = @friends.where(created_at: Date.today.all_week).length
+    @totalBulanKemarin = @friends.where(created_at: 1.month.ago.all_month).length
+    @totalBulanIni = @friends.where(created_at: Date.today.all_month).length
+    @totalTahunKemarin = @friends.where(created_at: 1.year.ago.all_year).length
+    @totalTahunIni = @friends.where(created_at: Date.today.all_year).length
+    def persentaseKenaikan(awal, akhir)
+      return awal <= 0 ? "0" : (akhir - awal) / awal * 100/100
+    end
+    @persentaseMingguIni = persentaseKenaikan(@totalMingguKemarin, @totalMingguIni)
+    @persentaseBulanIni = persentaseKenaikan(@totalBulanKemarin, @totalBulanIni)
+    @persentaseTahunIni = persentaseKenaikan(@totalTahunKemarin, @totalTahunIni)
+
+    
   end
 
   # GET /friends/1 or /friends/1.json
@@ -34,7 +47,7 @@ class FriendsController < ApplicationController
     @friend = current_user.friends.build(friend_params)
     respond_to do |format|
       if @friend.save
-        format.html { redirect_to @friend, notice: "Friend was successfully created." }
+        format.html { redirect_to @friend, notice: I18n.t('friend.create') }
         format.json { render :show, status: :created, location: @friend }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +60,7 @@ class FriendsController < ApplicationController
   def update
     respond_to do |format|
       if @friend.update(friend_params)
-        format.html { redirect_to @friend, notice: "Friend was successfully updated." }
+        format.html { redirect_to @friend, notice: I18n.t('friend.update') }
         format.json { render :show, status: :ok, location: @friend }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -60,7 +73,7 @@ class FriendsController < ApplicationController
   def destroy
     @friend.destroy
     respond_to do |format|
-      format.html { redirect_to friends_url, notice: "Friend was successfully destroyed." }
+      format.html { redirect_to friends_url, notice: I18n.t('friend.destroy') }
       format.json { head :no_content }
     end
   end
